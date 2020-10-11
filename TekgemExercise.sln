@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TekgemExercise", "TekgemExercise\TekgemExercise.csproj", "{FB3C2E22-CA0F-4C37-997D-8920C07CE646}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TekgemExerciseUnitTests", "TekgemExerciseUnitTests\TekgemExerciseUnitTests.csproj", "{AEBFFC50-FF4F-4A85-8EE3-0C8F1C2D9C7E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB3C2E22-CA0F-4C37-997D-8920C07CE646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB3C2E22-CA0F-4C37-997D-8920C07CE646}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB3C2E22-CA0F-4C37-997D-8920C07CE646}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB3C2E22-CA0F-4C37-997D-8920C07CE646}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEBFFC50-FF4F-4A85-8EE3-0C8F1C2D9C7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEBFFC50-FF4F-4A85-8EE3-0C8F1C2D9C7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEBFFC50-FF4F-4A85-8EE3-0C8F1C2D9C7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEBFFC50-FF4F-4A85-8EE3-0C8F1C2D9C7E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {966F3B80-1D14-4D16-8B8C-4AFCAC056911}
+	EndGlobalSection
+EndGlobal
