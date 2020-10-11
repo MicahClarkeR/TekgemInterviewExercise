@@ -10,7 +10,7 @@ namespace TekgemExercise.CitySearch
     public class CityFinder : ICityFinder
     {
         private CityTreeNode Root; // The root starting CityTreeNode for the database.
-        private int NumberOfSuggestions = 5;
+        private int NumberOfSuggestions = -1;
 
         public CityFinder()
         {

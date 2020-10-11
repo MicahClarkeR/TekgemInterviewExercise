@@ -33,8 +33,8 @@ namespace TekgemExercise
             {
                 ICityResult result = cityFinder.Search(search);
 
-                DisplayLetters(result.NextLetters);
                 DisplayNextCities(result.NextCities);
+                DisplayLetters(result.NextLetters);
                 search = GetUserInput(result.NextLetters, search);
             }
         }
@@ -63,6 +63,8 @@ namespace TekgemExercise
             {
                 Console.Write(city + " - ");
             }
+
+            Console.Write("\n\n\n");
         }
 
         /// <summary>

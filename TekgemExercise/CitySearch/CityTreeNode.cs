@@ -94,7 +94,7 @@ namespace TekgemExercise.CitySearch
         /// </summary>
         /// <param name="amount">Number of entires to get.</param>
         /// <returns>Found valid entires from the databse.</returns>
-        public List<string> GetEntries(int amount)
+        public List<string> GetEntries(int amount = -1)
         {
             List<string> entries = new List<string>();
 
@@ -124,7 +124,7 @@ namespace TekgemExercise.CitySearch
                 entries.AddRange(tempEntries);
 
                 // If enough is found, leave the loop.
-                if(tempEntries.Count >= amount)
+                if(amount != -1 && tempEntries.Count >= amount)
                 {
                     break;
                 }
@@ -167,7 +167,7 @@ namespace TekgemExercise.CitySearch
             {
                 suggestions = GetEntries(amount);
 
-                if(suggestions.Count > amount)
+                if(amount != -1 && suggestions.Count > amount)
                     suggestions = suggestions.GetRange(0, amount);
             }
 
