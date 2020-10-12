@@ -13,6 +13,7 @@ namespace TekgemExercise.CitySearch
     public class CityTreeNode
     {
         public bool WordComplete = false;   // Mark if this node completes a valid data-entry.
+        public string Word;
         private bool Root;                  // Designate if this node is the root node for the database.
 
         // Contain all the child CityTreeNodes sorted by their string key.
@@ -31,29 +32,31 @@ namespace TekgemExercise.CitySearch
         /// Adds the given content string to the database.
         /// </summary>
         /// <param name="content">Content to add to the database.</param>
-        public void Add(string content)
+        /// <param name="addIndex">An index used to keep track of adding to the tree.</param>
+        public void Add(string content, int addIndex = 0)
         {
             // If this content has 0 length, then this node completes a city name.
-            if (content.Length == 0)
+            if ((content.Length - 1) == addIndex)
             {
                 WordComplete = true;
+                Word = content;
             }
             else // Otherwise...
             {
                 // Get the first letter.
-                string letter = content[0].ToString().ToLower();
+                string letter = content[addIndex].ToString().ToLower();
 
                 // If this node's children exist for this letter, add the remaining content to the child.
                 if (Children.ContainsKey(letter))
                 {
-                    content = content[1..];
-                    Children[letter].Add(content);
+                    addIndex++;
+                    Children[letter].Add(content, addIndex);
                 }
                 else // Otherwise...
                 {
                     // Create the requied child and add this content to it.
                     Children.Add(letter, new CityTreeNode());
-                    Add(content);
+                    Add(content, addIndex);
                 }
             }
         }
@@ -107,17 +110,10 @@ namespace TekgemExercise.CitySearch
                 // Get entires from the current child CityTreeNode
                 List<string> tempEntries = new List<string>(child.GetEntries(amount));
 
-                // Combine data from the child node with this node, forming the city names
-                for (int i = 0; i < tempEntries.Count; i++)
-                {
-                    tempEntries[i] = new string(letter + tempEntries[i]);
-                }
-
-
                 // If the current child completes an entry, add it to the found entries
                 if(child.WordComplete)
                 {
-                    tempEntries.Add(letter);
+                    tempEntries.Add(child.Word);
                 }
 
                 // Add the temporary entries to the total entries.
@@ -155,12 +151,6 @@ namespace TekgemExercise.CitySearch
 
                     // Get the suggestions from the child
                     suggestions = Children[letter].GetSuggestions(search, amount);
-
-                    // Rebuild the city name from the child data and current letter
-                    for (int i = 0; i < suggestions.Count; i++)
-                    {
-                        suggestions[i] = new string(letter + suggestions[i]);
-                    }
                 }
             }
             else // Otherise, get the requried amount of valid entries from the children
