@@ -13,7 +13,7 @@ namespace TekgemExercise.CitySearch
     public class CityTreeNode
     {
         public bool WordComplete = false;   // Mark if this node completes a valid data-entry.
-        public string Word, Letter;
+        public string Word;
         private bool Root;                  // Designate if this node is the root node for the database.
 
         // Contain all the child CityTreeNodes sorted by their string key.
@@ -23,10 +23,9 @@ namespace TekgemExercise.CitySearch
         /// CityTreeNode constructor.
         /// </summary>
         /// <param name="root">Set if this CityTreeNode forms the root of the database.</param>
-        public CityTreeNode(bool root = false, string letter = "")
+        public CityTreeNode(bool root = false)
         {
             Root = root;
-            Letter = letter;
         }
 
         /// <summary>
@@ -56,7 +55,7 @@ namespace TekgemExercise.CitySearch
                 else // Otherwise...
                 {
                     // Create the requied child and add this content to it.
-                    Children.Add(letter, new CityTreeNode(false, letter));
+                    Children.Add(letter, new CityTreeNode());
                     Add(content, addIndex);
                 }
             }
@@ -89,13 +88,7 @@ namespace TekgemExercise.CitySearch
             }
             else // Otherwise, return all child dictionary keys
             {
-                List<string> letters = new List<string>();
-                letters.AddRange(Children.Keys);
-
-                if(letters.Count == 0 && WordComplete)
-                    letters.Add(Word[Word.Length - 1].ToString());
-
-                return letters;
+                return Children.Keys.ToList();
             }
         }
 
@@ -117,6 +110,12 @@ namespace TekgemExercise.CitySearch
                 // Get entires from the current child CityTreeNode
                 List<string> tempEntries = new List<string>(child.GetEntries(amount));
 
+                // If the current child completes an entry, add it to the found entries
+                if(child.WordComplete)
+                {
+                    tempEntries.Add(child.Word);
+                }
+
                 // Add the temporary entries to the total entries.
                 entries.AddRange(tempEntries);
 
@@ -125,12 +124,6 @@ namespace TekgemExercise.CitySearch
                 {
                     break;
                 }
-            }
-
-            // If this node completes a work, add it to the entries.
-            if (WordComplete)
-            {
-                entries.Add(Word);
             }
 
             // Return found entires.
